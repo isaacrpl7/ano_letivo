@@ -1,0 +1,14 @@
+{% extends "generic.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Novo aluno
+{% endblock title %}
+
+{% block content %}
+    <h1>Novo aluno</h1>
+    <form class="novo" action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="botao_create">Salvar</button>
+    </form>
+{% endblock content %}

@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>{% block title %}Ano Letivo{% endblock title %}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- main css (template) -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+    <!-- site css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/style.css' %}">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <!-- Fonte Roboto e Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="header">
+        <a class="logo" href="#">Dashboard</a>
+        <nav>
+            <a href="#menu"></a>
+        </nav>
+    </header>
+    <section id="banner">
+        <div class="inner">
+            <h1>ANO LETIVO</h1>
+            <p>Uma ferramenta para gerenciar escolas, alunos, professores, entre outros elementos, para organizar seu ano letivo!</p>
+        </div>
+    </section>
+    <section class="wrapper">
+        <div class="inner">
+            <header class="special">
+                <h2>GERENCIE OS ELEMENTOS DO SEU ANO LETIVO</h2>
+                <p>Precisa cadastrar alunos? Precisa gerenciar os professores? Tem necessidade de saber quais são as disciplinas? Resolva tudo agora!</p>
+            </header>
+
+            <div class="highlights">
+                <section id="item1">
+                    <div class="content">
+                        <header>
+                            <a href="#" class="icon">
+                                <img class="change-icon-color" src="static/dashboard/images/icons/graduation-hat.svg" width="100px" />
+                                <span class="label">Icon</span>
+                            </a>
+                            <h3>ESCOLAS</h3>
+                        </header>
+                        <p>Cadastre sua(s) escola(s) e gerencie-a(s)! Após isso, você poderá criar novos professores, turmas, alunos, entre outros.</p>
+                    </div>
+                </section>
+                <section id="item2">
+                    <div class="content">
+                        <header>
+                            <a href="#" class="icon">
+                                <img src="static/dashboard/images/icons/presentation.svg" width="100px" />
+                                <span class="label">Icon</span>
+                            </a>
+                            <h3>TURMAS</h3>
+                        </header>
+                        <p>Após cadastrar uma escola, cadastre suas turmas. Nunca ficou tão fácil poder gerenciar isso!</p>
+                    </div>
+                </section>
+                <section id="item3">
+                    <div class="content">
+                        <header>
+                            <a href="#" class="icon">
+                                <img src="static/dashboard/images/icons/student.svg" width="100px" />
+                                <span class="label">Icon</span>
+                            </a>
+                            <h3>ALUNOS</h3>
+                        </header>
+                        <p>Ao cadastrar uma turma, agora você pode cadastrar alunos e adicionar à turma.</p>
+                    </div>
+                </section>
+                <section id="item4">
+                    <div class="content">
+                        <header>
+                            <a href="#" class="icon">
+                                <img src="static/dashboard/images/icons/open-book.svg" width="100px" />
+                                <span class="label">Icon</span>
+                            </a>
+                            <h3>DISCIPLINAS</h3>
+                        </header>
+                        <p>Cada turma possui suas disciplinas, portanto, sinta-se livre para cadastrá-las e adicioná-las à turma.</p>
+                    </div>
+                </section>
+                <section id="item5">
+                    <div class="content">
+                        <header>
+                            <a href="#" class="icon">
+                                <img src="static/dashboard/images/icons/teacher-at-the-blackboard.svg" width="100px" />
+                                <span class="label">Icon</span>
+                            </a>
+                            <h3>PROFESSORES</h3>
+                        </header>
+                        <p>Cada disciplina pode ser ministrada por um professor. Após criá-las, cadastre seus professores!</p>
+                    </div>
+                </section>
+                <section id="item6">
+                    <div class="content">
+                        <header>
+                            <a href="#" class="icon">
+                                <img src="static/dashboard/images/icons/experience.svg" width="100px" />
+                                <span class="label">Icon</span>
+                            </a>
+                            <h3>HABILIDADES</h3>
+                        </header>
+                        <p>Cada aluno adquire uma habilidade ao cursar uma disciplina. Elas geram recompensas!</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="inner">
+            <div class="content">
+                <section>
+                    <h3>Gerencie o ano letivo</h3>
+                    <p>Simples sistema para gerenciamento do ano letivo em escolas. Crie uma escola, cadastre alunos, disciplinas, e muito mais!</p>
+                </section>
+                <section>
+                    <h3>Icones</h3>
+                    <p>Icons made by <a href="https://www.flaticon.com/authors/bqlqn" title="bqlqn">bqlqn</a>, 
+                    <a href="https://www.freepik.com" title="Freepik">Freepik</a>
+                    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+                </section>
+            </div>
+            <div class="copyright">© Feito por Isaac Reinaldo.</div>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $('#item1').click(function() {
+                window.location.href = '{% url 'escolas-list' %}';
+            });
+        });
+    </script>
+
+    <!-- jQuery -->
+    <script src="{% static 'dashboard/js/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/browser.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/util.js' %}"></script>
+    <script src="{% static 'dashboard/js/main.js' %}"></script>
+    <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>{% block title %}Ano Letivo{% endblock title %}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- main css (template) -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+    <!-- site css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/style.css' %}">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <!-- Fonte Roboto e Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="header">
+        <a class="logo" href="#">Dashboard</a>
+        <nav>
+            <a href="#menu"></a>
+        </nav>
+    </header>
+    <div id="heading">
+        <h1>ANO LETIVO</h1>
+    </div>
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <div class="content">
+                {%block content%}
+                {%endblock content%}
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="inner">
+            <div class="content">
+                <section>
+                    <h3>Gerencie o ano letivo</h3>
+                    <p>Simples sistema para gerenciamento do ano letivo em escolas. Crie uma escola, cadastre alunos, disciplinas, e muito mais!</p>
+                </section>
+            </div>
+            <div class="copyright">© Feito por Isaac Reinaldo.</div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'dashboard/js/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/browser.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/util.js' %}"></script>
+    <script src="{% static 'dashboard/js/main.js' %}"></script>
+    <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

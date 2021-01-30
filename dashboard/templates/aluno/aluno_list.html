@@ -1,0 +1,71 @@
+{% extends "generic.html" %}
+{% block title %}
+    Lista dos alunos
+{% endblock title %}
+{% block content %}
+
+    {% load extras %}
+    <h1>Lista dos alunos</h1>
+    
+    <div class="header-table">
+        <form method="get" class="busca-form">
+            <p style="margin-bottom: 0.5rem">Procurar por código:</p>
+            <div class="busca">
+                {{aFilter.form.codigo}}
+                <button class="botao_busca" type="submit">Buscar</button>
+            </div>
+        </form>
+        <a class="btn-nova-review" href="{% url 'alunos-add' %}">Novo aluno</a>
+        <a class="btn-nova-review" href="">Dashboard</a>
+    </div>
+
+    <table id="game-table" class="" cellspacing="0" width="100%">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <th class="th-sm">Codigo</th>
+                <th class="th-sm">Descrição</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for object in page_obj %}
+                <tr>
+                    <td>{{object.codigo}}</td>
+                    <td>{{object.descricao}}</td>
+                    <td class="last">
+                        <a class="botao_form" href="">Editar</a>
+                        <form class="form-del" action="{% url 'alunos-delete' object.codigo %}" onsubmit="return confirm('Você tem certeza?');" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="botao_form del">
+                                Excluir
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a class="botao_pagina" href="{% my_url 1 'page' request.GET.urlencode %}">&laquo; primeira</a>
+                <a class="botao_pagina" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="botao_pagina" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %}">próxima</a>
+                <a class="botao_pagina" href="{% my_url page_obj.paginator.num_pages 'page' request.GET.urlencode %}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+{% endblock content %}

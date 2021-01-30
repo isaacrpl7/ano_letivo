@@ -1,0 +1,81 @@
+{% extends "generic.html" %}
+{% block title %}
+    Lista das Escolas
+{% endblock title %}
+{% block content %}
+
+    {% load extras %}
+    <h2>Lista das escolas</h2>
+    
+    <div class="filters">
+        <form method="get" class="busca-form">
+            <div class="gtr-uniform">
+                    <h4>Procurar por código:</h4>
+                    <div class="col-12">
+                        {{eFilter.form.codigo}}
+                    </div>
+                    <div class="col-12">
+                        <button class="button primary" type="submit">Buscar</button>
+                    </div>
+                </form>                
+            </div>
+    </div>
+    <div class="options">
+        <a class="button small" href="{% url 'escolas-add' %}">Nova escola</a>
+        <a class="button small" href="">Dashboard</a>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for object in page_obj %}
+                    <tr>
+                        <td>{{object.codigo}}</td>
+                        <td>{{object.descricao}}</td>
+                        <td class="last">
+                            <a class="button small" href="">Editar</a>
+                            <form class="form-del" action="{% url 'escolas-delete' object.codigo %}" onsubmit="return confirm('Você tem certeza?');" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="button primary small">
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a class="botao_pagina" href="{% my_url 1 'page' request.GET.urlencode %}">&laquo; primeira</a>
+                <a class="botao_pagina" href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="botao_pagina" href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %}">próxima</a>
+                <a class="botao_pagina" href="{% my_url page_obj.paginator.num_pages 'page' request.GET.urlencode %}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+            $('input').addClass('primary');
+        });
+    </script>
+{% endblock content %}
