@@ -1,10 +1,13 @@
 from django.views.generic import CreateView, ListView, UpdateView
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from dashboard.models import Escola
 from dashboard.filters import EscolaFilter
 from django.core.paginator import Paginator
 
+@login_required
 def show_page(request):
     context = {}
 
@@ -22,11 +25,12 @@ def show_page(request):
 
     return render(request, 'escola/escola_list.html', context=context)
 
-class EscolaCreate(CreateView):
+class EscolaCreate(CreateView, LoginRequiredMixin):
     model = Escola
     fields = ['codigo', 'descricao']
     success_url = '/dashboard/escolas'
 
+@login_required
 def delete(request, codigo):
     formObject = Escola.objects.get(pk=codigo)
     formObject.delete()

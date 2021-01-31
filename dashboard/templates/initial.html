@@ -25,7 +25,7 @@
 </head>
 <body>
     <header id="header">
-        <a class="logo" href="#">Dashboard</a>
+        <a class="logo" href="#">Página inicial</a>
         <nav>
             <a href="#menu"></a>
         </nav>
@@ -140,8 +140,17 @@
 
     <script>
         $(document).ready(function () {
+            $('nav a').click(function() {
+                $('body').addClass('is-menu-visible');
+            });
+            $('#menu').click(function() {
+                $('body').removeClass('is-menu-visible');
+            });
             $('#item1').click(function() {
                 window.location.href = '{% url 'escolas-list' %}';
+            });
+            $('#item3').click(function() {
+                window.location.href = '{% url 'alunos-list' %}';
             });
         });
     </script>
@@ -155,5 +164,24 @@
     <script src="{% static 'dashboard/js/main.js' %}"></script>
     <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
     <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+
+    <nav id="menu">
+        <ul class="links">
+            {% if user.is_authenticated %}
+            <li>User: {{ user.get_username }}</li>
+            <li>
+                <a href="{% url 'logout' %}" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'login' %}" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Login</a>
+            </li>
+            <li>
+                <a href="{% url 'signup' %}" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Sign Up</a>
+            </li>
+            {% endif %}
+        </ul>
+        <a href="#menu" class="close" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></a>
+    </nav>
 </body>
 </html>
