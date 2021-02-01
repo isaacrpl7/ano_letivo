@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '42&(t3w6=lm!vcvb8hc85y$)381-r+5lk@vqs563!+l+)sd6y^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['ano-letivo.herokuapp.com', 'localhost']
 
