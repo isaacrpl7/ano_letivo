@@ -79,11 +79,14 @@ WSGI_APPLICATION = 'ano_letivo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE' : 'django.db.backends.postgresql',
+        'NAME' : 'djdp65h9488ho',
+        'HOST' : 'ec2-3-211-149-196.compute-1.amazonaws.com',
+        'PORT' : 5432,
+        'USER' : 'pridstkytxwtiu',
+        'PASSWORD' : '3ec91eed7a9568c2e044eedbfa4fd30d55bc81a886b0ea3b353a06acff9c3fe4',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
