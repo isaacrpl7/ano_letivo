@@ -104,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Autor: Lucas Moura
+SILENCED_SYSTEM_CHECKS = ['urls.W001']
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -124,7 +126,7 @@ USE_TZ = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = 'dashboard/static/'
+STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
