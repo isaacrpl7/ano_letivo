@@ -1,0 +1,1 @@
+web: gunicorn ano_letivo.wsgi --log-file -
