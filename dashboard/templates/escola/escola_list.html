@@ -8,9 +8,12 @@
     <h2>Lista das escolas</h2>
     
     <div class="filters">
+        <h3 class="filters-title">Filtros</h3>
         <form method="get" class="busca-form">
             <div class="gtr-uniform">
-                    <h4>Procurar por código:</h4>
+                    <div class="col-12">
+                        <h4>Procurar por código:</h4>
+                    </div>
                     <div class="col-12">
                         {{eFilter.form.codigo}}
                     </div>
@@ -30,6 +33,7 @@
             <thead>
                 <tr>
                     <th>Codigo</th>
+                    <th>Nome</th>
                     <th>Descrição</th>
                     <th>Ações</th>
                 </tr>
@@ -39,9 +43,11 @@
                 {% for object in page_obj %}
                     <tr>
                         <td>{{object.codigo}}</td>
+                        <td>{{object.nome}}</td>
                         <td>{{object.descricao}}</td>
-                        <td class="last">
+                        <td class="actions">
                             <a class="button small" href="">Editar</a>
+                            <a class="button small" href="{% url 'escolas-detail' object.codigo %}">Detalhar</a>
                             <form class="form-del" action="{% url 'escolas-delete' object.codigo %}" onsubmit="return confirm('Você tem certeza?');" method="post" class="d-inline">
                                 {% csrf_token %}
                                 <button type="submit" class="button primary small">
@@ -76,6 +82,10 @@
     <script>
         $(document).ready(function () {
             $('input').addClass('primary');
+            $('.filters-title').click(function() {
+                if($('.gtr-uniform').css('display') == 'block') $('.gtr-uniform').css('display', 'none')
+                else $('.gtr-uniform').css('display', 'block')
+            })
         });
     </script>
 {% endblock content %}

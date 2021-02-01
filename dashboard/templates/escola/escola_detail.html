@@ -1,0 +1,15 @@
+{% extends 'generic.html' %}
+
+{% block content %}
+<h1>{{ object.nome }} | {{ object.codigo }}</h1>
+<p>{{ object.descricao }}</p>
+{% if object.turmas.all %}
+    <h4><b>Turmas:</b></h4>
+    <ul>
+        {% for item in object.turmas.all %}
+            <li>{{ item.codigo }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<a class="button" href="{% url 'escolas-list' %}">Voltar</a>
+{% endblock %}

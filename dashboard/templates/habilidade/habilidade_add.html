@@ -1,0 +1,15 @@
+{% extends "generic.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Nova habilidade
+{% endblock title %}
+
+{% block content %}
+    <h1>Nova habilidade</h1>
+    <form class="novo" action="" method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="botao_create">Salvar</button>
+        <a href="{% url 'habilidades-list' %}" class="button">Voltar</a>
+    </form>
+{% endblock content %}

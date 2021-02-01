@@ -1,0 +1,15 @@
+{% extends 'generic.html' %}
+
+{% block content %}
+<h1>{{ object.nome }} | {{ object.codigo }}</h1>
+<p>{{ object.descricao }}</p>
+{% if object.professores.all %}
+    <h4><b>Professores:</b></h4>
+    <ul>
+        {% for item in object.professores.all %}
+            <li>{{ item.nome }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<a class="button" href="{% url 'disciplinas-list' %}">Voltar</a>
+{% endblock %}

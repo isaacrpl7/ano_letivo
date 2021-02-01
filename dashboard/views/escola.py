@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,7 +13,7 @@ def show_page(request):
 
     eFilter = EscolaFilter(
         request.GET,
-        queryset=Escola.objects.all()
+        queryset=request.user.escolas.all()
     )
     context['eFilter'] = eFilter
 
@@ -27,11 +27,18 @@ def show_page(request):
 
 class EscolaCreate(CreateView, LoginRequiredMixin):
     model = Escola
-    fields = ['codigo', 'descricao']
+    fields = ['codigo', 'nome', 'descricao']
     success_url = '/dashboard/escolas'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class EscolaDetail(DetailView, LoginRequiredMixin):
+    model = Escola
 
 @login_required
 def delete(request, codigo):
-    formObject = Escola.objects.get(pk=codigo)
+    formObject = request.user.escolas.get(pk=codigo)
     formObject.delete()
     return redirect('escolas-list')

@@ -149,8 +149,20 @@
             $('#item1').click(function() {
                 window.location.href = '{% url 'escolas-list' %}';
             });
+            $('#item2').click(function() {
+                window.location.href = '{% url 'turmas-list' %}';
+            });
             $('#item3').click(function() {
                 window.location.href = '{% url 'alunos-list' %}';
+            });
+            $('#item4').click(function() {
+                window.location.href = '{% url 'disciplinas-list' %}';
+            });
+            $('#item5').click(function() {
+                window.location.href = '{% url 'professores-list' %}';
+            });
+            $('#item6').click(function() {
+                window.location.href = '{% url 'habilidades-list' %}';
             });
         });
     </script>

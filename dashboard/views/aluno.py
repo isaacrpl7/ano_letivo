@@ -12,7 +12,7 @@ def show_page(request):
 
     aFilter = AlunoFilter(
         request.GET,
-        queryset=Aluno.objects.all()
+        queryset=request.user.alunos.all()
     )
     context['aFilter'] = aFilter
 
@@ -26,11 +26,15 @@ def show_page(request):
 
 class AlunoCreate(LoginRequiredMixin, CreateView):
     model = Aluno
-    fields = ['codigo', 'descricao']
+    fields = ['codigo', 'nome', 'descricao', 'turma']
     success_url = '/dashboard/alunos'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 @login_required
 def delete(request, codigo):
-    formObject = Aluno.objects.get(pk=codigo)
+    formObject = request.user.alunos.get(pk=codigo)
     formObject.delete()
     return redirect('alunos-list')
