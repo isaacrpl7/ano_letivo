@@ -10,3 +10,6 @@ class Turma(models.Model):
 
     def __str__(self):
         return "Turma: " + self.codigo
+
+    class Meta:
+        ordering = ['-codigo']

@@ -11,3 +11,6 @@ class Professor(models.Model):
 
     def __str__(self):
         return self.nome + " | Código: " + self.codigo
+
+    class Meta:
+        ordering = ['-codigo']
