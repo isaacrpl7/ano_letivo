@@ -10,6 +10,8 @@
             <li>{{ item.nome }}</li>
         {% endfor %}
     </ul>
+{% else %}
+    <h4>Essa turma ainda não tem disciplinas.</h4>
 {% endif %}
 {% if object.alunos.all %}
     <h4><b>Alunos:</b></h4>
@@ -18,6 +20,8 @@
             <li>{{ item.nome }}</li>
         {% endfor %}
     </ul>
+{% else %}
+    <h4>Essa turma ainda não tem alunos.</h4>
 {% endif %}
 <a class="button" href="{% url 'turmas-list' %}">Voltar</a>
 {% endblock %}

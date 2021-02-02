@@ -45,7 +45,7 @@
                         <td>{{object.nome}}</td>
                         <td>{{object.descricao}}</td>
                         <td class="actions">
-                            <a class="button small" href="">Editar</a>
+                            <a class="button small" href="{% url 'habilidades-update' object.codigo %}">Editar</a>
                             <form class="form-del" action="{% url 'habilidades-delete' object.codigo %}" onsubmit="return confirm('Você tem certeza?');" method="post" class="d-inline">
                                 {% csrf_token %}
                                 <button type="submit" class="button primary small">

@@ -27,7 +27,16 @@ def show_page(request):
 class DisciplinaCreate(LoginRequiredMixin, CreateView):
     model = Disciplina
     fields = ['codigo', 'nome', 'descricao', 'turma']
-    success_url = '/dashboard/disciplinas'
+    success_url = '/disciplinas'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class DisciplinaUpdate(UpdateView, LoginRequiredMixin):
+    model = Disciplina
+    fields = ['codigo', 'nome', 'descricao', 'turma']
+    success_url = '/disciplinas'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

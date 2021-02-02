@@ -10,6 +10,8 @@
             <li>{{ item.codigo }}</li>
         {% endfor %}
     </ul>
+{% else %}
+    <h4>Ainda não existem turmas cadastradas.</h4>
 {% endif %}
 <a class="button" href="{% url 'escolas-list' %}">Voltar</a>
 {% endblock %}

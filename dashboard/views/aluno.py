@@ -27,7 +27,16 @@ def show_page(request):
 class AlunoCreate(LoginRequiredMixin, CreateView):
     model = Aluno
     fields = ['codigo', 'nome', 'descricao', 'turma']
-    success_url = '/dashboard/alunos'
+    success_url = '/alunos'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class AlunoUpdate(UpdateView, LoginRequiredMixin):
+    model = Aluno
+    fields = ['codigo', 'nome', 'descricao', 'turma']
+    success_url = '/alunos'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

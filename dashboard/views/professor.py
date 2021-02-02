@@ -27,7 +27,16 @@ def show_page(request):
 class ProfessorCreate(LoginRequiredMixin, CreateView):
     model = Professor
     fields = ['codigo', 'nome', 'descricao', 'disciplina']
-    success_url = '/dashboard/professores'
+    success_url = '/professores'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class ProfessorUpdate(UpdateView, LoginRequiredMixin):
+    model = Professor
+    fields = ['codigo', 'nome', 'descricao', 'disciplina']
+    success_url = '/professores'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

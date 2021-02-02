@@ -28,7 +28,16 @@ def show_page(request):
 class TurmaCreate(CreateView, LoginRequiredMixin):
     model = Turma
     fields = ['codigo', 'descricao', 'escola']
-    success_url = '/dashboard/turmas'
+    success_url = '/turmas'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class TurmaUpdate(UpdateView, LoginRequiredMixin):
+    model = Turma
+    fields = ['codigo', 'descricao', 'escola']
+    success_url = '/turmas'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

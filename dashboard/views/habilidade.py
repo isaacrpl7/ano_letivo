@@ -27,7 +27,16 @@ def show_page(request):
 class HabilidadeCreate(LoginRequiredMixin, CreateView):
     model = Habilidade
     fields = ['codigo', 'nome', 'descricao', 'alunos']
-    success_url = '/dashboard/habilidades'
+    success_url = '/habilidades'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class HabilidadeUpdate(UpdateView, LoginRequiredMixin):
+    model = Habilidade
+    fields = ['codigo', 'nome', 'descricao', 'alunos']
+    success_url = '/habilidades'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

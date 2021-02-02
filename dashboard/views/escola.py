@@ -28,7 +28,16 @@ def show_page(request):
 class EscolaCreate(CreateView, LoginRequiredMixin):
     model = Escola
     fields = ['codigo', 'nome', 'descricao']
-    success_url = '/dashboard/escolas'
+    success_url = '/escolas'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class EscolaUpdate(UpdateView, LoginRequiredMixin):
+    model = Escola
+    fields = ['codigo', 'nome', 'descricao']
+    success_url = '/escolas'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

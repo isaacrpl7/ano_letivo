@@ -10,6 +10,8 @@
             <li>{{ item.nome }}</li>
         {% endfor %}
     </ul>
+{% else %}
+    <h4>Essa disciplina ainda não possui professores.</h4>
 {% endif %}
 <a class="button" href="{% url 'disciplinas-list' %}">Voltar</a>
 {% endblock %}
