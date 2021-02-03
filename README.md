@@ -1,5 +1,7 @@
 # ano_letivo
 
+Link do projeto funcionando: https://ano-letivo.herokuapp.com
+
 ## Resumo da aplicação
 Aplicação web de registro de ano letivo em escolas. A aplicação possui 6 tabelas: Aluno, Disciplina, Escola, Habilidade, Professor e Turma. Cada uma possui as relações que foram indicadas na orientação do projeto, porém, decidi fazer pequenas modificações. Em Aluno adicionei os campos, Disciplina, Escola, Professor e Habilidade adicionei o campo 'nome', para que ficasse mais fácil a distinção de cada objeto. Em disciplinas, adicionei os campos 'habilidades_requeridas' e 'habilidades_ofertadas', que ligam em uma relação "ManyToMany" a tabela Disciplina e Habilidade. Além disso, os alunos possuem uma relação 'ManyToMany' com as habilidades também.
 
