@@ -26,7 +26,7 @@ def show_page(request):
 
 class DisciplinaCreate(LoginRequiredMixin, CreateView):
     model = Disciplina
-    fields = ['codigo', 'nome', 'descricao', 'turma']
+    fields = ['codigo', 'nome', 'descricao', 'turma', 'habilidades_ofertadas', 'habilidades_requeridas']
     success_url = '/disciplinas'
 
     def form_valid(self, form):
@@ -35,7 +35,7 @@ class DisciplinaCreate(LoginRequiredMixin, CreateView):
 
 class DisciplinaUpdate(UpdateView, LoginRequiredMixin):
     model = Disciplina
-    fields = ['codigo', 'nome', 'descricao', 'turma']
+    fields = ['codigo', 'nome', 'descricao', 'turma', 'habilidades_ofertadas', 'habilidades_requeridas']
     success_url = '/disciplinas'
 
     def form_valid(self, form):

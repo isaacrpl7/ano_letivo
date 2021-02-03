@@ -1,0 +1,18 @@
+{% extends 'generic.html' %}
+
+{% block content %}
+<h1 style="margin-bottom: 4rem;">Adicionar habilidades para {{ aluno.nome }}</h1>
+<form method='post'>
+    <div class="gtr-uniform">
+        <div class="col-12">
+            <h4>Escolha uma ou mais opções:</h4>
+            {% csrf_token %}
+            {{form}}
+        </div>
+        <div class="col-12">
+            <input type='submit' value='Adicionar'>
+            <a href="{% url 'alunos-list' %}" class="button">Voltar</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

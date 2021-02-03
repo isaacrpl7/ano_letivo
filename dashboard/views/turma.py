@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from dashboard.models import Turma
+from dashboard.models import Turma, Habilidade
 from dashboard.filters import TurmaFilter
 from django.core.paginator import Paginator
 

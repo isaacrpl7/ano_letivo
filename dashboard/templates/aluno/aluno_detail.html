@@ -1,0 +1,35 @@
+{% extends 'generic.html' %}
+
+{% block content %}
+<h1>{{ object.nome }} | {{ object.codigo }}</h1>
+<p>{{ object.descricao }}</p>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if object.turma.disciplinas.all %}
+    <h4><b>Disciplinas:</b></h4>
+    <ul>
+        {% for item in object.turma.disciplinas.all %}
+            <li>{{ item.nome }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h4>Esse aluno ainda não possui disciplinas.</h4>
+{% endif %}
+{% if object.habilidades.all %}
+    <h4><b>Habilidades:</b></h4>
+    <ul>
+        {% for item in object.habilidades.all %}
+            <li>{{ item.nome }} &nbsp;<b><a style="text-decoration: none;" href="{% url 'remover-habilidade' item.codigo object.codigo %}">X</a></b></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h4>Esse aluno ainda não possui habilidade.</h4>
+{% endif %}
+<a class="button" href="{% url 'alunos-list' %}">Voltar</a>
+<a class="button" href="{% url 'alunos-add-habilidade' object.codigo %}">Adicionar habilidades</a>
+{% endblock %}

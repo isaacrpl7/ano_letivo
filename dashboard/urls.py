@@ -2,6 +2,7 @@ from django.urls import path, include
 from django.contrib import admin
 
 from dashboard.views import escola, turma, aluno, disciplina, professor, habilidade, index
+from dashboard.views.controller import turma_controller, aluno_controller
 
 urlpatterns = [
     path('', index.show_page, name='index'),
@@ -15,6 +16,7 @@ urlpatterns = [
 
     # TURMAS
     path('turmas', turma.show_page, name='turmas-list'),
+    path('turmas/concluir/<str:codigo>', turma_controller.concluir, name='turmas-concluir'),
     path('turmas/novo', turma.TurmaCreate.as_view(template_name="turma/turma_add.html"), name='turmas-add'),
     path('turmas/<str:pk>', turma.TurmaDetail.as_view(template_name="turma/turma_detail.html"), name='turmas-detail'),
     path('turmas/editar/<str:pk>', turma.TurmaUpdate.as_view(template_name="turma/turma_add.html"), name='turmas-update'),
@@ -22,8 +24,12 @@ urlpatterns = [
 
     # ALUNOS
     path('alunos', aluno.show_page, name='alunos-list'),
+    path('alunos/adicionar-habilidades/<str:aluno>', aluno_controller.adicionarHabilidades, name='alunos-add-habilidade'),
+    path('alunos/remover-habilidade/<str:hab>&<str:aluno>', aluno_controller.removerhabilidade, name='remover-habilidade'),
     path('alunos/novo', aluno.AlunoCreate.as_view(template_name="aluno/aluno_add.html"), name='alunos-add'),
+    path('alunos/<str:pk>', aluno.AlunoDetail.as_view(template_name="aluno/aluno_detail.html"), name='alunos-detail'),
     path('alunos/editar/<str:pk>', aluno.AlunoUpdate.as_view(template_name="aluno/aluno_add.html"), name='alunos-update'),
+    path('alunos/matricular/<str:pk>', aluno_controller.AlunoMatricula.as_view(template_name="aluno/aluno_matricula.html"), name='alunos-matricula'),
     path('escolas/excluir/<str:codigo>', escola.delete, name='alunos-delete'),
 
     # DISCIPLINAS

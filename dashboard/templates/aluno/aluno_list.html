@@ -6,7 +6,13 @@
 
     {% load extras %}
     <h2>Lista dos alunos</h2>
-    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div class="filters">
         <h3 class="filters-title">Filtros</h3>
         <form method="get" class="busca-form">
@@ -45,11 +51,17 @@
                     <tr>
                         <td>{{object.codigo}}</td>
                         <td>{{object.nome}}</td>
+                        {% if object.turma %}
                         <td>{{object.turma}}</td>
                         <td>{{object.turma.escola}}</td>
+                        {% else %}
+                        <td><a class="button small" href="{% url 'alunos-matricula' object.codigo %}">Matricular</a></td>
+                        <td>O aluno não está matriculado em uma escola.</td>
+                        {% endif %}
                         <td>{{object.descricao}}</td>
                         <td class="actions">
                             <a class="button small" href="{% url 'alunos-update' object.codigo %}">Editar</a>
+                            <a class="button small" href="{% url 'alunos-detail' object.codigo %}">Detalhar</a>
                             <form class="form-del" action="{% url 'alunos-delete' object.codigo %}" onsubmit="return confirm('Você tem certeza?');" method="post" class="d-inline">
                                 {% csrf_token %}
                                 <button type="submit" class="button primary small">

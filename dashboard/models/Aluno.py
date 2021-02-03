@@ -7,7 +7,7 @@ class Aluno(models.Model):
     nome = models.CharField(max_length=50, default='')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='alunos', default=0)
     descricao = models.CharField(max_length=100, blank=True)
-    turma = models.ForeignKey(Turma, related_name='alunos', on_delete=models.CASCADE)
+    turma = models.ForeignKey(Turma, related_name='alunos', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.nome + " | Código: " + self.codigo

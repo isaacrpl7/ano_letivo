@@ -9,7 +9,7 @@ class Turma(models.Model):
     descricao = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return "Turma: " + self.codigo
+        return "Turma: " + self.codigo + " | Escola: " + self.escola.nome
 
     class Meta:
         ordering = ['-codigo']

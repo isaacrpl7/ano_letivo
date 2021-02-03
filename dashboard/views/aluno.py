@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from dashboard.filters import AlunoFilter
-from dashboard.models import Aluno
+from dashboard.models import Aluno, Habilidade
 from django.core.paginator import Paginator
+from dashboard.views.controller import aluno_controller
 
 @login_required
 def show_page(request):
@@ -26,11 +27,13 @@ def show_page(request):
 
 class AlunoCreate(LoginRequiredMixin, CreateView):
     model = Aluno
-    fields = ['codigo', 'nome', 'descricao', 'turma']
+    fields = ['codigo', 'nome', 'descricao', 'turma', 'habilidades']
     success_url = '/alunos'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        if aluno_controller.comparar_habilidades(self.object, form.instance.turma, self.request):
+            return redirect('alunos-list')
         return super().form_valid(form)
 
 class AlunoUpdate(UpdateView, LoginRequiredMixin):
@@ -40,7 +43,12 @@ class AlunoUpdate(UpdateView, LoginRequiredMixin):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        if aluno_controller.comparar_habilidades(self.object, form.instance.turma, self.request):
+            return redirect('alunos-detail', self.object.codigo)
         return super().form_valid(form)
+
+class AlunoDetail(DetailView, LoginRequiredMixin):
+    model = Aluno
 
 @login_required
 def delete(request, codigo):

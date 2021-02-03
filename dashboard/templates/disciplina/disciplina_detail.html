@@ -13,5 +13,25 @@
 {% else %}
     <h4>Essa disciplina ainda não possui professores.</h4>
 {% endif %}
+{% if object.habilidades_requeridas.all %}
+    <h4><b>Habilidades necessárias para cumprir a disciplina:</b></h4>
+    <ul>
+        {% for item in object.habilidades_requeridas.all %}
+            <li>{{ item.nome }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h4>Essa disciplina não necessita de nenhuma habilidade prévia para ser cumprida.</h4>
+{% endif %}
+{% if object.habilidades_ofertadas.all %}
+    <h4><b>Habilidades que a disciplina oferta:</b></h4>
+    <ul>
+        {% for item in object.habilidades_ofertadas.all %}
+            <li>{{ item.nome }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h4>Essa disciplina não oferta nenhuma habilidade.</h4>
+{% endif %}
 <a class="button" href="{% url 'disciplinas-list' %}">Voltar</a>
 {% endblock %}

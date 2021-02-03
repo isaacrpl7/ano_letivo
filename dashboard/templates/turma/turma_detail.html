@@ -24,4 +24,6 @@
     <h4>Essa turma ainda não tem alunos.</h4>
 {% endif %}
 <a class="button" href="{% url 'turmas-list' %}">Voltar</a>
+<a class="button" href="{% url 'alunos-list' %}">Matricular aluno</a>
+<a class="button" href="{% url 'turmas-concluir' object.codigo %}" onclick="return confirm('Você tem certeza?');">Concluir turma</a>
 {% endblock %}
