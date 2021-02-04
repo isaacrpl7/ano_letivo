@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path, os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '42&(t3w6=lm!vcvb8hc85y$)381-r+5lk@vqs563!+l+)sd6y^'
+SECRET_KEY = config('SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -80,11 +81,11 @@ WSGI_APPLICATION = 'ano_letivo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'djdp65h9488ho',
-        'HOST' : 'ec2-3-211-149-196.compute-1.amazonaws.com',
+        'NAME' : config('NAME'),
+        'HOST' : config('HOST'),
         'PORT' : 5432,
-        'USER' : 'pridstkytxwtiu',
-        'PASSWORD' : '3ec91eed7a9568c2e044eedbfa4fd30d55bc81a886b0ea3b353a06acff9c3fe4',
+        'USER' : config('USER'),
+        'PASSWORD' : config('PASSWORD'),
     }
 }
 
